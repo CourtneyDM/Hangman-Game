@@ -1,10 +1,17 @@
-// Variable Declarations
-var numOfGuesses;
+// Global Variable Declarations
 var letter;
-var letterGuessed = [];
+var lettersGuessed = [];
+var numOfGuesses;
 var numOfWins;
 
-var superhero = [
+var superhero = document.getElementById("superhero");
+var superhero_img = document.getElementById("superhero_img");
+
+superhero_img.innerHTML = "<img src='/images/superman.jpg'>";
+
+
+// Superhero Object
+var superheroes = [
     {
         id: 0,
         alias: "Arthur Curry",
