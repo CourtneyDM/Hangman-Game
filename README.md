@@ -11,4 +11,4 @@ Guess the alias of the superhero within 10 guesses to diplay the superhero's ima
 - [X] Create a variable to display the letter guessed
 - [X] Create a variable to display the total number of wins
 - [X] Create an array to store the letters guessed
-- [X] Create an array to store 
+- [X] Create an array to store superhero's name and alias
