@@ -1,12 +1,14 @@
 # Hangman-Game
-Javascript version of Hangman game
+Superhero version of the classic game Hangman.
 
 
+## Objective:
+Guess the alias of the superhero within 10 guesses to diplay the superhero's image.
 
 
-## Tasks
+### Tasks
 - [X] Create a variable to display the number of guesses
 - [X] Create a variable to display the letter guessed
 - [X] Create a variable to display the total number of wins
 - [X] Create an array to store the letters guessed
-- [X] Create an array to store random words to be used for game
+- [X] Create an array to store 
