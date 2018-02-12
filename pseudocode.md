@@ -7,6 +7,9 @@ This file acts as my "white board" approach to the hangman game assignment.
 - [X] Create a variable to display the total number of wins
 - [X] Create an array to store the letters guessed
 - [X] Create an array to store superhero's name and alias
+- [ ] Add an area on the index page to show the letter currently guessed
+- [ ] Modify the guessedLetter function to iterate through the array for duplicate values
+- [ ] Create function to grab the alias from the superhero Object
 
 
 ## Psuedo
