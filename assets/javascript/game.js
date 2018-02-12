@@ -4,63 +4,77 @@ var lettersGuessed = [];
 var numOfGuesses;
 var numOfWins;
 
-var superhero = document.getElementById("superhero");
-var superhero_img = document.getElementById("superhero_img");
-
-superhero_img.innerHTML = "<img src='/images/superman.jpg'>";
-
-
 // Superhero Object
 var superheroes = [
     {
-        id: 0,
         alias: "Arthur Curry",
         superhero: "Aquaman"
     },
     {
-        id: 1,
         alias: "Bruce Wayne",
         superhero: "Batman"
     },
     {
-        id: 2,
         alias: "Steven Rogers",
         superhero: "Captain America"
     },
     {
-        id: 3,
         alias: "Wade Wilson",
         superhero: "Deadpool"
-
     },
     {
-        id: 4,
         alias: "Oliver Queen",
         superhero: "Green Arrow"
     },
     {
-        id: 5,
         alias: "Bruce Banner",
         superhero: "Incredible Hulk"
     },
     {
-        id: 6,
         alias: "Tony Stark",
         superhero: "Iron Man"
     },
     {
-        id: 7,
         alias: "Peter Parker",
         superhero: "Spider-man"
     },
     {
-        id: 8,
         alias: "Clark Kent",
         superhero: "Superman"
     },
     {
-        id: 9,
         alias: "Princes Diana",
         superhero: "Wonder Woman"
     }
 ];
+
+// Capture letter on key up
+document.onkeyup = function (event) {
+    if (event.key === "Alt" ||
+        event.key === "ArrowDown" ||
+        event.key === "ArrowLeft" ||
+        event.key === "ArrowRight" ||
+        event.key === "ArrowUp" ||
+        event.key === "Backspace" ||
+        event.key === "CapsLock" ||
+        event.key === "Control" ||
+        event.key === "Enter" ||
+        event.key === "Escape" ||
+        event.key === "Meta" ||
+        event.key === "Shift") {
+        letter = "";
+    }
+    else letter = event.key.toLowerCase();
+    guessedLetter(letter);
+}
+
+// Check the letter guessed to see if it was previously used
+function guessedLetter(guessedLetter) {
+    if (lettersGuessed.length === 0) {
+        lettersGuessed.push(guessedLetter);
+    }
+    else
+        lettersGuessed.push(guessedLetter);
+    console.log(lettersGuessed);
+    // console.log(superheroes[0]);
+}
