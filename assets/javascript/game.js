@@ -1,8 +1,9 @@
 // Global Variable Declarations
-var letter; // Stores value of key pressed
-var lettersGuessed = []; // Stores all keys pressed
-var numOfGuesses = 10; // Number of guesses allowed
-var numOfWins; // Number of wins
+var index;                  // Used as index for superheroes Object
+var letter;                 // Stores value of key pressed
+var lettersGuessed = [];    // Stores all keys pressed
+var numOfGuesses = 10;      // Number of guesses allowed
+var numOfWins;              // Number of wins
 
 var superhero_img = document.getElementById("superhero_img");
 
@@ -52,6 +53,13 @@ var superheroes = [{
 }
 ];
 
+// Function will randomly generate a number between 1 and 10 when the page loads
+document.onload = generate();
+
+// Testing display of alias on webpage
+var alias = document.getElementById("alias");
+alias.innerHTML = superheroes[index].alias;
+
 // Capture letter on key up
 document.onkeyup = function (event) {
     if (event.key === "Alt" ||
@@ -70,37 +78,39 @@ document.onkeyup = function (event) {
     } else letter = event.key.toLowerCase();
 
     current.innerText = letter;
-    // guessedLetter(letter);
+    guessedLetter(letter);
     // generate();
 
     console.log("Function finished. Array now contains " + lettersGuessed);
 }
 
+
 function generate() {
-    var index = Math.floor(Math.random() * Math.floor(superheroes.length) + 1);
+    index = Math.floor(Math.random() * Math.floor(superheroes.length));
     console.log("index: " + index);
+    return index;
 }
 
 
 // Check the letter guessed to see if it was previously used
 function guessedLetter(newLetter) {
-    superhero_img.src = "assets/images/superman.jpg";
+    // superhero_img.src = "assets/images/superman.jpg";
     if (lettersGuessed.length === 0) {
-        console.log("array is empty, adding new letter to array.");
+        // console.log("array is empty, adding new letter to array.");
         lettersGuessed.push(newLetter);
         guessed.innerText = lettersGuessed;
-        console.log("exiting If statement...");
+        // console.log("exiting If statement...");
     }
 
     // if the array is not empty
     else if (lettersGuessed.length !== 0) {
-        console.log("array not empty, there are " + lettersGuessed.length + " items in the array...starting FOR loop");
+        // console.log("array not empty, there are " + lettersGuessed.length + " items in the array...starting FOR loop");
         for (var i = 0; i < lettersGuessed.length; i++) {
-            console.log("Beginning of FOR loop. i = " + i + ", lettersGuessed[i] = " + lettersGuessed[i]);
+            // console.log("Beginning of FOR loop. i = " + i + ", lettersGuessed[i] = " + lettersGuessed[i]);
 
             // if the new letter equals the current letter
             if (newLetter === lettersGuessed[i]) {
-                console.log("found a match. not adding letter.");
+                // console.log("found a match. not adding letter.");
                 break;
             }
 
@@ -109,7 +119,7 @@ function guessedLetter(newLetter) {
                 // if the end of array has been reached
                 if (lettersGuessed.length === i + 1) {
                     // else add the new letter to the array
-                    console.log("no match found and have reached end of array. adding new letter.");
+                    // console.log("no match found and have reached end of array. adding new letter.");
                     lettersGuessed.push(newLetter);
                     guessed.innerText = lettersGuessed;
                     break;
@@ -121,5 +131,5 @@ function guessedLetter(newLetter) {
             }
         }
     }
-    console.log("At the end of the function. array contains: " + lettersGuessed);
+    // console.log("At the end of the function. array contains: " + lettersGuessed);
 }
