@@ -1,51 +1,55 @@
 // Global Variable Declarations
-var letter;
-var lettersGuessed = [];
-var numOfGuesses;
-var numOfWins;
+var letter; // Stores value of key pressed
+var lettersGuessed = []; // Stores all keys pressed
+var numOfGuesses = 10; // Number of guesses allowed
+var numOfWins; // Number of wins
+
+var superhero_img = document.getElementById("superhero_img");
+
+var current = document.getElementById("current");
+var guessed = document.getElementById("guessed");
 
 // Superhero Object
-var superheroes = [
-    {
-        alias: "Arthur Curry",
-        superhero: "Aquaman"
-    },
-    {
-        alias: "Bruce Wayne",
-        superhero: "Batman"
-    },
-    {
-        alias: "Steven Rogers",
-        superhero: "Captain America"
-    },
-    {
-        alias: "Wade Wilson",
-        superhero: "Deadpool"
-    },
-    {
-        alias: "Oliver Queen",
-        superhero: "Green Arrow"
-    },
-    {
-        alias: "Bruce Banner",
-        superhero: "Incredible Hulk"
-    },
-    {
-        alias: "Tony Stark",
-        superhero: "Iron Man"
-    },
-    {
-        alias: "Peter Parker",
-        superhero: "Spider-man"
-    },
-    {
-        alias: "Clark Kent",
-        superhero: "Superman"
-    },
-    {
-        alias: "Princes Diana",
-        superhero: "Wonder Woman"
-    }
+var superheroes = [{
+    alias: "Arthur Curry",
+    superhero: "Aquaman"
+},
+{
+    alias: "Bruce Wayne",
+    superhero: "Batman"
+},
+{
+    alias: "Steven Rogers",
+    superhero: "Captain America"
+},
+{
+    alias: "Wade Wilson",
+    superhero: "Deadpool"
+},
+{
+    alias: "Oliver Queen",
+    superhero: "Green Arrow"
+},
+{
+    alias: "Bruce Banner",
+    superhero: "Incredible Hulk"
+},
+{
+    alias: "Tony Stark",
+    superhero: "Iron Man"
+},
+{
+    alias: "Peter Parker",
+    superhero: "Spider-man"
+},
+{
+    alias: "Clark Kent",
+    superhero: "Superman"
+},
+{
+    alias: "Princes Diana",
+    superhero: "Wonder Woman"
+}
 ];
 
 // Capture letter on key up
@@ -63,18 +67,53 @@ document.onkeyup = function (event) {
         event.key === "Meta" ||
         event.key === "Shift") {
         letter = "";
-    }
-    else letter = event.key.toLowerCase();
+    } else letter = event.key.toLowerCase();
+
+    current.innerText = letter;
     guessedLetter(letter);
+
+    console.log("Function finished. Array now contains " + lettersGuessed);
 }
 
+
 // Check the letter guessed to see if it was previously used
-function guessedLetter(guessedLetter) {
+function guessedLetter(newLetter) {
+    superhero_img.src = "assets/images/superman.jpg";
     if (lettersGuessed.length === 0) {
-        lettersGuessed.push(guessedLetter);
+        console.log("array is empty, adding new letter to array.");
+        lettersGuessed.push(newLetter);
+        guessed.innerText = lettersGuessed;
+        console.log("exiting If statement...");
     }
-    else
-        lettersGuessed.push(guessedLetter);
-    console.log(lettersGuessed);
-    // console.log(superheroes[0]);
+
+    // if the array is not empty
+    else if (lettersGuessed.length !== 0) {
+        console.log("array not empty, there are " + lettersGuessed.length + " items in the array...starting FOR loop");
+        for (var i = 0; i < lettersGuessed.length; i++) {
+            console.log("Beginning of FOR loop. i = " + i + ", lettersGuessed[i] = " + lettersGuessed[i]);
+
+            // if the new letter equals the current letter
+            if (newLetter === lettersGuessed[i]) {
+                console.log("found a match. not adding letter.");
+                break;
+            }
+
+            // else, if the new letter does not equal current letter
+            else if (newLetter !== lettersGuessed[i]) {
+                // if the end of array has been reached
+                if (lettersGuessed.length === i + 1) {
+                    // else add the new letter to the array
+                    console.log("no match found and have reached end of array. adding new letter.");
+                    lettersGuessed.push(newLetter);
+                    guessed.innerText = lettersGuessed;
+                    break;
+                }
+                // else, run next iteration of FOR loop
+                else {
+                    console.log("no match found and have not reached end of array. returning to FOR loop.");
+                }
+            }
+        }
+    }
+    console.log("At the end of the function. array contains: " + lettersGuessed);
 }
