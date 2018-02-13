@@ -71,7 +71,7 @@ document.onkeyup = function (event) {
 
     current.innerText = letter;
     // guessedLetter(letter);
-    generate();
+    // generate();
 
     console.log("Function finished. Array now contains " + lettersGuessed);
 }
