@@ -43,7 +43,7 @@
                 <!-- Reserved for hangman Puzzle -->
                 <div class="col-md-4">
                     <div id="stage" class="text-center">
-                        <p>This is where the blank letters will reside</p>
+                        <p id="alias">This is where the blank letters will reside</p>
                     </div>
                 </div>
 
@@ -51,8 +51,12 @@
                 <!-- Reserved for displaying results of game won -->
                 <div class="col-md-4">
                     <div class="superhero-content">
+                        <p class="text-center">Letters Guessed:
+                            <span id="guessed"></span>
+                        </p>
                         <p id="superhero" class="text-center"></p>
-                        <img src="# " alt="# " id="superhero_img">
+                        <!-- Add to javascript the functionality to insert the image to the DOM -->
+                        <!-- <img src="# " alt="# " id="superhero_img"> -->
                     </div>
                 </div>
 
@@ -63,10 +67,6 @@
                         <p>Current Letter:
                             <span id="current"></span>
                         </p>
-                        <p>Letters Guessed:
-                            <span id="guessed"></span>
-                        </p>
-
                     </div>
                 </div>
             </div>
