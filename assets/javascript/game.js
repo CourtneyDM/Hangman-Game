@@ -70,9 +70,15 @@ document.onkeyup = function (event) {
     } else letter = event.key.toLowerCase();
 
     current.innerText = letter;
-    guessedLetter(letter);
+    // guessedLetter(letter);
+    generate();
 
     console.log("Function finished. Array now contains " + lettersGuessed);
+}
+
+function generate() {
+    var index = Math.floor(Math.random() * Math.floor(superheroes.length) + 1);
+    console.log("index: " + index);
 }
 
 
