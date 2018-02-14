@@ -1,3 +1,5 @@
+
+
 // Global Variable Declarations
 var index;                  // Used as index for superheroes Object
 var letter;                 // Stores value of key pressed
@@ -58,8 +60,9 @@ var superheroes = [{
 document.onload = generate();
 
 // Testing display of alias on webpage
-var alias = document.getElementById("alias");
+// var alias = document.getElementById("alias");
 identity = superheroes[index].alias;
+generate(identity);
 
 // Capture letter on key up
 document.onkeyup = function (event) {
@@ -92,7 +95,10 @@ function generate() {
     return index;
 }
 
-function game(
+function game(realName) {
+    console.log(realName);
+
+}
 
 
 // Check the letter guessed to see if it was previously used
