@@ -9,6 +9,7 @@ var superhero_img = document.getElementById("superhero_img");
 
 var current = document.getElementById("current");
 var guessed = document.getElementById("guessed");
+var identity = document.getElementById("identity");
 
 // Superhero Object
 var superheroes = [{
@@ -58,7 +59,7 @@ document.onload = generate();
 
 // Testing display of alias on webpage
 var alias = document.getElementById("alias");
-alias.innerHTML = superheroes[index].alias;
+identity = superheroes[index].alias;
 
 // Capture letter on key up
 document.onkeyup = function (event) {
@@ -90,6 +91,8 @@ function generate() {
     console.log("index: " + index);
     return index;
 }
+
+function game(
 
 
 // Check the letter guessed to see if it was previously used
