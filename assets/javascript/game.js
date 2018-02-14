@@ -1,5 +1,3 @@
-
-
 // Global Variable Declarations
 var index;          // Used as index for superheroes Object
 var letter;         // Stores value of key pressed
@@ -159,7 +157,7 @@ function showName(letter) {
         if (letter === name[i]) {
             nameArray[i] = letter;
         }
-        // else, decrement lives by 1
+        // else, decrement lives
         else lives--;
     }
     // Update display with letters that were guessed correctly
