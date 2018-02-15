@@ -6,9 +6,6 @@ var lives = 10;     // Number of guesses allowed
 var nameArray = []; // Stores the names
 var numOfWins = 0;  // Store number of wins
 
-
-
-
 // HTML Modifiers
 var current = document.getElementById("current");               // Show current letter guessed
 var guessed = document.getElementById("guessed");               // Show letters guessed
@@ -23,52 +20,52 @@ var superheroes = [
     {
         alias: "Arthur Curry",
         superhero: "Aquaman",
-        image: "/assets/images/aquaman.jpg"
+        image: "assets/images/aquaman.jpg"
     },
     {
         alias: "Bruce Wayne",
         superhero: "Batman",
-        image: "/assets/images/batman.jpg"
+        image: "assets/images/batman.jpg"
     },
     {
         alias: "Steven Rogers",
         superhero: "Captain America",
-        image: "/assets/images/captain-america.jpg"
+        image: "assets/images/captain-america.jpg"
     },
     {
         alias: "Wade Wilson",
         superhero: "Deadpool",
-        image: "/assets/images/deadpool.jpg"
+        image: "assets/images/deadpool.jpg"
     },
     {
         alias: "Oliver Queen",
         superhero: "Green Arrow",
-        image: "/assets/images/green-arrow.jpg"
+        image: "assets/images/green-arrow.jpg"
     },
     {
         alias: "Bruce Banner",
         superhero: "Incredible Hulk",
-        image: "/assets/images/incredible-hulk.jpg"
+        image: "assets/images/incredible-hulk.jpg"
     },
     {
         alias: "Tony Stark",
         superhero: "Iron Man",
-        image: "/assets/images/iron-man.jpg"
+        image: "assets/images/iron-man.jpg"
     },
     {
         alias: "Peter Parker",
         superhero: "Spider-man",
-        image: "/assets/images/spider-man.jpg"
+        image: "assets/images/spider-man.jpg"
     },
     {
         alias: "Clark Kent",
         superhero: "Superman",
-        image: "/assets/images/superman.jpg"
+        image: "assets/images/superman.jpg"
     },
     {
         alias: "Princess Diana",
         superhero: "Wonder Woman",
-        image: "/assets/images/wonder-woman.jpg"
+        image: "assets/images/wonder-woman.jpg"
     }
 ];
 
@@ -93,15 +90,16 @@ document.onkeyup = function (event) {
 
     current.innerText = letter;
     guessedLetter(letter);
-    showName(letter);
+    // showName(letter);
 }
 
-function resetGame() {
+function resetGame(wins) {
     index = Math.floor(Math.random() * superheroes.length); // Random number used to select random alias
-    console.log("index: " + index);
+    // console.log("index: " + index);
     hideName(superheroes[index].alias.toLowerCase());       // Will display dashes for each character in alias selected
     showWins.innerText = numOfWins;                         // Will display number of wins
     showLives.innerText = lives;                            // Will display number of lives left
+    wins = numOfWins;
 }
 
 function hideName(realName) {
@@ -117,54 +115,46 @@ function hideName(realName) {
 
 // Check the letter guessed to see if it was previously used
 function guessedLetter(newLetter) {
-    // if the array is empty, the add new letter to array
-    if (guesses.length === 0) {
+
+    if (!guesses.includes(newLetter)) {
         guesses.push(newLetter);
         guessed.innerText = guesses;
-    }
-
-    // if the array is not empty, check each letter in array
-    else if (guesses.length !== 0) {
-        // compare current letter to letter at index i
-        for (var i = 0; i < guesses.length; i++) {
-            // if the current letter exists, exit loop
-            if (newLetter === guesses[i]) {
-                break;
-            }
-            // else, if the current letter does not equal letter at index i
-            else if (newLetter !== guesses[i]) {
-                // if the end of array has been reached
-                if (guesses.length === i + 1) {
-                    // else add the new letter to the array
-                    guesses.push(newLetter);
-                    guessed.innerText = guesses;
-                }
-            }
-        }
+        showName(newLetter);
     }
 }
 
 // Look for the current letter in the alias
 function showName(letter) {
-    // shorthand reference to superhero's alias
-    var name = superheroes[index].alias.toLowerCase();
+    var img = document.createElement("img");                // Create HTML element to display image
+    var imgSrc = superheroes[index].image;
+    var name = superheroes[index].alias.toLowerCase();      // Shorthand reference to superhero's alias
+
+    img.src = imgSrc;
 
     // loop through array and compare with current letter
     for (var i = 0; i < name.length; i++) {
-        // if letter does not match letter at index i, move to next letter
-        if (letter !== name[i] && name.length !== i) {
-            console.log("no match, incrementing i = " + i);
-        }
-        else {
+        // if letter is found, update nameArray to include letter and display
+        if (name[i] === letter) {
             nameArray[i] = letter;
         }
     }
     // if the nameArray does not contain current letter, decrement lives by 1
     if (!nameArray.includes(letter)) {
         lives--;
+        if (lives === 0) {
+            alert("Game over...you lose.");
+            return;
+        }
     }
+    // if the nameArray does not contain dashes, increment games win by 1
+    else if (!nameArray.includes("-") && lives > 0) {
+        numOfWins++;
+        superhero_img.appendChild(img);
+    }
+
+
     // Update display with letters that were guessed correctly
     showLives.innerText = lives;
+    showWins.innerText = numOfWins;
     identity.innerText = nameArray.join("");
-
 }
