@@ -124,6 +124,7 @@ function showName(letter) {
     var img = document.createElement("img");                // Create HTML element to display image
     var imgSrc = superheroes[index].image;                  // Use alias attribute to get superhero image
     var name = superheroes[index].alias.toLowerCase();      // Shorthand reference to superhero's alias
+    var superhero = superheroes[index].superhero;
 
     // Shorthand for setting image source attribute
     img.src = imgSrc;
