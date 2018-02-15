@@ -12,7 +12,7 @@ This file acts as my "white board" approach to the hangman game assignment.
 - [X] Randomly generate a number between 1 and the length of superhero Object
 - [X] Use random number as index to grab alias from the superhero Object
 - [X] Display letter blanks for alias on index.html
-- [ ] Add "Number of Guesses Left" display to index.html
+- [X] Add "Number of Guesses Left" display to index.html
 - [ ] Add a "Reset Game" button
 - [ ] Add "Number of Wins" and "Number of Losses"
 
@@ -24,14 +24,14 @@ This file acts as my "white board" approach to the hangman game assignment.
         - [X] add it to the guessed array
             - [X] check that letter to see if it is in the name to be guessed
                 - [X] if that letter is not in the name
-                    - [ ] decrement numOfGuesses by 1
+                    - [X] decrement numOfGuesses by 1
                 - else
                     - [X] display that letter on the screen in the appropriate spot
     - else if letter has been guessed
         - [X] wait for user to press another letter -- modify later to prompt user
 * check to see if there are letters to be guessed
     - if numOfGuess is not zero and there are no more letters to be guessed
-        - [ ] display the superhero's picture
+        - [X] display the superhero's picture
         - [ ] display the superhero's name
     - else
         - if numOfGuess is equal to zero and there are more letters to be guessed
