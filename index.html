@@ -8,78 +8,85 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <title>Hangman Game</title>
+    <title>Superhero Hangman</title>
 </head>
 
 <body>
     <header>
         <!-- Header content will go here -->
-        <h1 class="text-center">Hangman Game</h1>
-        <h3 class="text-center">Superhero Version</h3>
+        <h1 class="text-center">Hangman - Superhero Edition</h1>
     </header>
-    <!-- Game Objectives -->
-    <div class="container">
-        <p>How well do you know your superheros? Well, you're about to find out! In this game of hangman, you have to guess
-            the alias of a given superhero. Easy enough, right?</p>
-        <br>
-        <h4>Objective:</h4>
-        <p>You will be given 10 chances to guess a letter in the name. Each incorrect guess will cost you, so choose wisely.
-            <br>
-            <strong>NOTE</strong> - you will not be penalized for guessing the same letter twice.</p>
-
-    </div>
-    <!-- End of Game Objectives -->
-
-    <!-- Insert modal here...replace Header with modal if functions correctly -->
-    <!-- <div data-toggle="modal" data-target="#myModal">Open Modal</div>
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog"> -->
-    <!-- Modal content-->
-    <!-- <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div> -->
-    <!-- End of Modal section -->
-
-
-
 
     <!-- Gameplay Area -->
-    <div class="container">
+    <div class="container" id="gameplay">
         <!-- <h2 class="text-center">Hangman</h2> -->
 
         <!-- Section for Letter Board header, hangman puzzle and letters guessed  -->
         <div class="row">
             <div class="col-md-3 text-center well" id="letterBoard">
-                <h3 class="text-center">Letter Board</h3>
+                <h3 class="text-center">Game Board</h3>
                 <br>
+                <br>
+                <p id="tagline"></p>
                 <p id="identity"></p>
                 <p class="text-center">Letters Guessed:
                     <br>
                     <span id="guessed">N/A</span>
-                </p>
+                </p><br>
+
+                <!-- Instructions Modal -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Instructions</button>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal Content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Welcome to Hangman - Superhero Edition</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>How well do you know your superheros? Well, you're about to find out! In this game of hangman, you have to guess the alias of a given superhero. Easy enough, right?</p><br>
+                                        <h4><strong>Your Objective:</strong></h4>
+                                        <p>You will be given a hint in the form of a tagline or movie quote, along with 10 chances to guess the alias of the superhero. Each incorrect guess will cost you, so choose wisely. <strong>NOTE</strong> - you will
+                                            not be penalized for guessing the same letter twice.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-info btn-sm" id="revealBtn">Reveal</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Section for displaying superhero name and picture when game is won -->
-            <div class="col-md-6 text-center" id="stage">
-                <h3 class="text-center">Superhero Guessed</h3>
-                <br>
-                <div class="superhero-content">
-                    <span id="superhero_img"></span>
-                    <p id="superhero"></p>
+            <div class="col-md-6">
+                <span data-toggle="modal modal-lg" data-target="#stage"></span>
+
+                <div class="modal fade" id="stage" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 id="superhero"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <p class="img-responsive img-rounded" id="superhero_img"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" Close>Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -110,28 +117,53 @@
                     <div class="col-md-6">
                         <span class="text-left" id="showWins"></span>
                     </div>
+                </div><br><br>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-sm" id="restartBtn">Restart</button>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-sm btn-danger" id="exitBtn">Exit</button>
+                    </div>
+                    <div class="col-sm-2"></div>
                 </div>
             </div>
         </div>
+        <!-- End of Gameplay Area -->
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <button type="submit">Replay</button>
-                </div>
-                <div class="col-md-4">
-                    <button type="reset">Reset</button>
-                </div>
-                <div class="col-md-4">
-                    <button>Exit</button>
+        <!-- Modal start -->
+        <!-- <div class="container">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Click for Instructions</button>
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog"> -->
+        <!-- Modal Content -->
+        <!-- <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Welcome to Hangman - Superhero Edition</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>How well do you know your superheros? Well, you're about to find out! In this game of hangman, you have to guess the alias of a given superhero. Easy enough, right?</p><br>
+                            <h4><strong>Your Objective:</strong></h4>
+                            <p>You will be given 10 chances to guess a letter in the name. Each incorrect guess will cost you, so choose wisely. <strong>NOTE</strong> - you will not be penalized for guessing the same letter twice.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- End of Gameplay Area -->
+        </div> -->
 
-    <!-- Adding Javascript file -->
-    <script src="assets/javascript/game.js "></script>
+        <!-- Adding Javascript file -->
+        <script src="assets/javascript/game.js "></script>
+        <footer class="footer">
+            <p>Copyright &copy 2018 Courtney Montgomery </p>
+            <p>Photo Credit: Wallscorner.com</p>
+        </footer>
 </body>
 <!-- End of webpage -->
 
