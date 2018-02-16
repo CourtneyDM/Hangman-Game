@@ -17,7 +17,7 @@ This file acts as my "white board" approach to the hangman game assignment.
 - [ ] Add "Number of Wins" and "Number of Losses"
 
 
-## Psuedocode
+## Pseudocode
 * capture letter that the user inputs from the keyboard
     - check to see if that letter has been guessed
     - if that letter has not been guessed

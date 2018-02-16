@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="assets/css/style.sss"> -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <title>Hangman Game</title>
 </head>
@@ -18,6 +19,28 @@
         <h1 class="text-center">Hangman Game</h1>
         <h3 class="text-center">Superhero Version</h3>
     </header>
+
+    <!-- Insert modal here...replace Header with modal if functions correctly -->
+    <div data-toggle="modal" data-target="#myModal">Open Modal</div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End of Modal section -->
 
 
     <!-- Game Objectives -->
@@ -34,59 +57,59 @@
     <!-- End of Game Objectives -->
 
     <!-- Gameplay Area -->
-    <div class="jumbotron">
-        <div class="container-fluid">
-            <!-- <h2 class="text-center">Hangman</h2> -->
+    <!-- <div class="jumbotron"> -->
+    <div class="container-fluid">
+        <!-- <h2 class="text-center">Hangman</h2> -->
 
 
-            <div class="row">
-                <!-- Reserved for hangman Puzzle -->
-                <div class="col-md-4">
-                    <div id="stage" class="text-center">
-                        <p id="identity"></p>
-                        <!-- <p id="superhero" class="text-center"></p> -->
-                        <!-- Add to javascript the functionality to insert the image to the DOM -->
-                        <span id="superhero_img"></span>
-                    </div>
-
+        <div class="row">
+            <!-- Reserved for hangman Puzzle -->
+            <div class="col-md-4">
+                <div id="stage" class="text-center">
+                    <p id="identity"></p>
+                    <!-- <p id="superhero" class="text-center"></p> -->
+                    <!-- Add to javascript the functionality to insert the image to the DOM -->
+                    <span id="superhero_img"></span>
                 </div>
 
-
-                <!-- Reserved for displaying results of game won -->
-                <div class="col-md-4">
-                    <div class="superhero-content">
-                        <p class="text-center">Letters Guessed:
-                            <br>
-                            <span id="guessed"></span>
-                        </p>
-                    </div>
-                </div>
+            </div>
 
 
-                <!-- Reserved for displaying letters guessed by user -->
-                <div class="col-md-4 ">
-                    <div id="guesses " class="text-center ">
-                        <p>Current Letter:
-                            <span id="current"></span>
-                        </p>
-                    </div>
+            <!-- Reserved for displaying results of game won -->
+            <div class="col-md-4">
+                <div class="superhero-content">
+                    <p class="text-center">Letters Guessed:
+                        <br>
+                        <span id="guessed"></span>
+                    </p>
                 </div>
             </div>
-            <div class="row">
-                <div class="text-center">
-                    <div class="col-md-4">
-                        <p>Total Wins: </p>
-                        <span id="showWins"></span>
-                    </div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <p>Lives Left: </p>
-                        <span id="showLives"></span>
-                    </div>
+
+
+            <!-- Reserved for displaying letters guessed by user -->
+            <div class="col-md-4 ">
+                <div id="guesses " class="text-center ">
+                    <p>Current Letter:
+                        <span id="current"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center">
+                <div class="col-md-4">
+                    <p>Total Wins: </p>
+                    <span id="showWins"></span>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <p>Lives Left: </p>
+                    <span id="showLives"></span>
                 </div>
             </div>
         </div>
     </div>
+    <!-- </div> -->
 
     <!-- End of Gameplay Area -->
 

@@ -26,6 +26,11 @@ var superheroes = [
         image: "assets/images/aquaman.jpg"
     },
     {
+        alias: "Natalia Allanovna Romanova",
+        superhero: "Black Widow",
+        image: "assets/images/black-widow.jpg"
+    },
+    {
         alias: "Bruce Wayne",
         superhero: "Batman",
         image: "assets/images/batman.jpg"
@@ -36,9 +41,19 @@ var superheroes = [
         image: "assets/images/captain-america.jpg"
     },
     {
+        alias: "Victor Stone",
+        superhero: "Cyborg",
+        image: "assets/images/cyborg.jpg"
+    },
+    {
         alias: "Wade Wilson",
         superhero: "Deadpool",
         image: "assets/images/deadpool.jpg"
+    },
+    {
+        alias: "Barry Allen",
+        superhero: "The Flash",
+        image: "assets/images/the-flash.jpg"
     },
     {
         alias: "Oliver Queen",
@@ -56,9 +71,39 @@ var superheroes = [
         image: "assets/images/iron-man.jpg"
     },
     {
+        alias: "Magnus Eisenhardt",
+        superhero: "Magneto",
+        image: "assets/images/magneto.jpg"
+    },
+    {
+        alias: "Raven Darkholme",
+        superhero: "Mystique",
+        image: "assets/images/mystique.png"
+    },
+    {
+        alias: "Jean Grey",
+        superhero: "Phoenix",
+        image: "assets/images/phoenix.jpg"
+    },
+    {
+        alias: "Charles Francis Xavier",
+        superhero: "Professor X",
+        image: "assets/images/professorX.jpg"
+    },
+    {
+        alias: "Anna Marie",
+        superhero: "Rogue",
+        image: "assets/images/rogue.jpg"
+    },
+    {
         alias: "Peter Parker",
         superhero: "Spider-man",
         image: "assets/images/spider-man.jpg"
+    },
+    {
+        alias: "Ororo Monroe",
+        superhero: "Storm",
+        image: "assets/images/storm.jpg"
     },
     {
         alias: "Clark Kent",
@@ -66,13 +111,22 @@ var superheroes = [
         image: "assets/images/superman.jpg"
     },
     {
-        alias: "Princess Diana",
+        alias: "James Logan Howlett",
+        superhero: "Wolverine",
+        image: "assets/images/wovlerine.jpg"
+    },
+    {
+        alias: "Princess Diana of Themyscira",
         superhero: "Wonder Woman",
         image: "assets/images/wonder-woman.jpg"
     }
 ];
 
-document.onload = resetGame(numOfWins);
+// document.onload = startGame(numOfWins); <--- original start to game
+
+document.onload = function () {
+
+}
 
 // Capture letter on key up
 document.onkeyup = function (event) {
@@ -90,14 +144,19 @@ document.onkeyup = function (event) {
     }
 }
 
-function resetGame(wins) {
+// Start game
+function startGame(wins) {
     index = Math.floor(Math.random() * superheroes.length); // Random number used to select random alias
     hideName(superheroes[index].alias.toLowerCase());       // Will display dashes for each character in alias selected
     showWins.innerText = numOfWins;                         // Will display number of wins
     showLives.innerText = lives;                            // Will display number of lives left
     wins = numOfWins;
+
+    // return with no errors
+    return wins;
 }
 
+// Display dashes on the screen
 function hideName(realName) {
     console.log(realName);
     for (var i = 0; i < realName.length; i++) {
@@ -106,7 +165,7 @@ function hideName(realName) {
         }
         else nameArray.push("-");
     }
-    return identity.innerText = nameArray.join("");
+    return realName;
 }
 
 // Check the letter guessed to see if it was previously used
@@ -117,6 +176,7 @@ function guessedLetter(newLetter) {
         guessed.innerText = guesses;
         showName(newLetter);
     }
+    return newLetter;
 }
 
 // Look for the current letter in the alias
@@ -124,7 +184,7 @@ function showName(letter) {
     var img = document.createElement("img");                // Create HTML element to display image
     var imgSrc = superheroes[index].image;                  // Use alias attribute to get superhero image
     var name = superheroes[index].alias.toLowerCase();      // Shorthand reference to superhero's alias
-    var superhero = superheroes[index].superhero;
+    var superhero = superheroes[index].superhero;           // Shorthand reference to superhero name
 
     // Shorthand for setting image source attribute
     img.src = imgSrc;
@@ -141,7 +201,6 @@ function showName(letter) {
         lives--;
         if (lives === 0) {
             alert("Game over...you lose.");
-            return;
         }
     }
     // if the nameArray does not contain dashes, increment games win by 1
@@ -150,9 +209,10 @@ function showName(letter) {
         superhero_img.appendChild(img);
     }
 
-
     // Update display with letters that were guessed correctly
     showLives.innerText = lives;
     showWins.innerText = numOfWins;
     identity.innerText = nameArray.join("");
+
+    return letter;
 }
