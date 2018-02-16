@@ -13,10 +13,8 @@ var guessed = document.getElementById("guessed");               // Show letters 
 var identity = document.getElementById("identity");             // Hide/reveal alias
 var showLives = document.getElementById("showLives");            // Show lives left
 var showWins = document.getElementById("showWins");             // Show total wins
+var superhero = document.getElementById("superhero");
 var superhero_img = document.getElementById("superhero_img");   // Insert image after win
-
-
-
 
 // Superhero Object
 var superheroes = [
@@ -113,7 +111,7 @@ var superheroes = [
     {
         alias: "James Logan Howlett",
         superhero: "Wolverine",
-        image: "assets/images/wovlerine.jpg"
+        image: "assets/images/wolverine.jpg"
     },
     {
         alias: "Princess Diana of Themyscira",
@@ -122,15 +120,13 @@ var superheroes = [
     }
 ];
 
-// document.onload = startGame(numOfWins); <--- original start to game
 
-document.onload = function () {
-
-}
+// Start game
+document.onload = startGame(numOfWins);
 
 // Capture letter on key up
 document.onkeyup = function (event) {
-    console.log(event.keyCode);
+    // console.log(event.keyCode);
     if (event.keyCode > 122 ||
         (event.keyCode < 97 && event.keyCode > 90) ||
         (event.keyCode < 65 && event.keyCode > 75) ||
@@ -144,16 +140,12 @@ document.onkeyup = function (event) {
     }
 }
 
-// Start game
 function startGame(wins) {
     index = Math.floor(Math.random() * superheroes.length); // Random number used to select random alias
     hideName(superheroes[index].alias.toLowerCase());       // Will display dashes for each character in alias selected
     showWins.innerText = numOfWins;                         // Will display number of wins
     showLives.innerText = lives;                            // Will display number of lives left
     wins = numOfWins;
-
-    // return with no errors
-    return wins;
 }
 
 // Display dashes on the screen
@@ -165,12 +157,13 @@ function hideName(realName) {
         }
         else nameArray.push("-");
     }
-    return realName;
+    identity.innerText = nameArray.join("");
+    return nameArray;
 }
 
 // Check the letter guessed to see if it was previously used
 function guessedLetter(newLetter) {
-    console.log(newLetter);
+    // console.log(newLetter);
     if (!guesses.includes(newLetter)) {
         guesses.push(newLetter);
         guessed.innerText = guesses;
@@ -181,10 +174,11 @@ function guessedLetter(newLetter) {
 
 // Look for the current letter in the alias
 function showName(letter) {
+    var superheroName = superheroes[index].superhero;           // Shorthand reference to superhero name
     var img = document.createElement("img");                // Create HTML element to display image
     var imgSrc = superheroes[index].image;                  // Use alias attribute to get superhero image
     var name = superheroes[index].alias.toLowerCase();      // Shorthand reference to superhero's alias
-    var superhero = superheroes[index].superhero;           // Shorthand reference to superhero name
+
 
     // Shorthand for setting image source attribute
     img.src = imgSrc;
@@ -207,6 +201,7 @@ function showName(letter) {
     else if (!nameArray.includes("-") && lives > 0) {
         numOfWins++;
         superhero_img.appendChild(img);
+        superhero.innerText = superheroName;
     }
 
     // Update display with letters that were guessed correctly

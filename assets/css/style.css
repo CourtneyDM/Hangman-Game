@@ -1,8 +1,27 @@
 body {
     box-sizing: border-box;
-    background: url("../../assets/images/background-img.jpg");
+    background-image: url("../../assets/images/bg_img2.jpg");
+    /* background: #000; */
     background-repeat: no-repeat;
     background-size: 100% auto;   
     font-size: 14px;
     color: #FFF;
+}
+
+header.jumbotron {
+    background-color: #000;
+}
+
+header.jumbotron p {
+    font-size: 16px;
+}
+
+#letterBoard,
+#stage,
+#stats {
+    color: #888;
+}
+
+#letterBoard {
+    word-wrap: break-word;
 }

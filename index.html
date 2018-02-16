@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
     <title>Hangman Game</title>
 </head>
@@ -19,30 +19,6 @@
         <h1 class="text-center">Hangman Game</h1>
         <h3 class="text-center">Superhero Version</h3>
     </header>
-
-    <!-- Insert modal here...replace Header with modal if functions correctly -->
-    <div data-toggle="modal" data-target="#myModal">Open Modal</div>
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- End of Modal section -->
-
-
     <!-- Game Objectives -->
     <div class="container">
         <p>How well do you know your superheros? Well, you're about to find out! In this game of hangman, you have to guess
@@ -56,61 +32,102 @@
     </div>
     <!-- End of Game Objectives -->
 
+    <!-- Insert modal here...replace Header with modal if functions correctly -->
+    <!-- <div data-toggle="modal" data-target="#myModal">Open Modal</div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog"> -->
+    <!-- Modal content-->
+    <!-- <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+    <!-- End of Modal section -->
+
+
+
+
     <!-- Gameplay Area -->
-    <!-- <div class="jumbotron"> -->
-    <div class="container-fluid">
+    <div class="container">
         <!-- <h2 class="text-center">Hangman</h2> -->
 
-
+        <!-- Section for Letter Board header, hangman puzzle and letters guessed  -->
         <div class="row">
-            <!-- Reserved for hangman Puzzle -->
-            <div class="col-md-4">
-                <div id="stage" class="text-center">
-                    <p id="identity"></p>
-                    <!-- <p id="superhero" class="text-center"></p> -->
-                    <!-- Add to javascript the functionality to insert the image to the DOM -->
-                    <span id="superhero_img"></span>
-                </div>
-
+            <div class="col-md-3 text-center well" id="letterBoard">
+                <h3 class="text-center">Letter Board</h3>
+                <br>
+                <p id="identity"></p>
+                <p class="text-center">Letters Guessed:
+                    <br>
+                    <span id="guessed">N/A</span>
+                </p>
             </div>
 
-
-            <!-- Reserved for displaying results of game won -->
-            <div class="col-md-4">
+            <!-- Section for displaying superhero name and picture when game is won -->
+            <div class="col-md-6 text-center" id="stage">
+                <h3 class="text-center">Superhero Guessed</h3>
+                <br>
                 <div class="superhero-content">
-                    <p class="text-center">Letters Guessed:
-                        <br>
-                        <span id="guessed"></span>
-                    </p>
+                    <span id="superhero_img"></span>
+                    <p id="superhero"></p>
                 </div>
             </div>
 
-
-            <!-- Reserved for displaying letters guessed by user -->
-            <div class="col-md-4 ">
-                <div id="guesses " class="text-center ">
-                    <p>Current Letter:
-                        <span id="current"></span>
-                    </p>
+            <!-- Section for displaying stats: Total Wins, Guesses remaining -->
+            <div class="col-md-3 well" id="stats">
+                <h3 class="text-center">Game Statistics</h3>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="text-left">Current Letter:</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="text-right" id="current">N/A</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="text-left">Guesses Left:</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="text-right" id="showLives"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="text-left">Total Wins:</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="text-left" id="showWins"></span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="text-center">
+
+        <div class="container">
+            <div class="row">
                 <div class="col-md-4">
-                    <p>Total Wins: </p>
-                    <span id="showWins"></span>
+                    <button type="submit">Replay</button>
                 </div>
-                <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <p>Lives Left: </p>
-                    <span id="showLives"></span>
+                    <button type="reset">Reset</button>
+                </div>
+                <div class="col-md-4">
+                    <button>Exit</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- </div> -->
-
     <!-- End of Gameplay Area -->
 
     <!-- Adding Javascript file -->
