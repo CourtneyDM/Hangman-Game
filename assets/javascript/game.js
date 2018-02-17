@@ -301,11 +301,3 @@ revealBtn.onclick = function () {
     // $("#stage").modal("show");
     // clearStats(numOfWins);
 }
-
-// function clearStat(pastWins) {
-//     for (var i = 0; nameArray.length; i++) {
-//         nameArray.pop();
-//     }
-//     nameArray = [];
-//     startGame(pastWins);
-// }
