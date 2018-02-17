@@ -25,7 +25,8 @@ var revealBtn = document.getElementById("revealBtn");
 
 
 // Superhero Object
-var superheroes = [{
+var superheroes =
+    [{
         alias: "Arthur Curry",
         superhero: "Aquaman",
         publisher: "DC Comics",
@@ -165,14 +166,14 @@ var superheroes = [{
         tagline: "I will fight for those that cannot fight for themselves.",
         image: "assets/images/superheroes/wonder-woman.jpg"
     }
-];
+    ];
 
 
 // Start game
 document.onload = startGame(numOfWins);
 
 // Capture letter on key up
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
     // console.log(event.keyCode);
     if (event.keyCode > 122 ||
         (event.keyCode < 97 && event.keyCode > 90) ||
@@ -186,11 +187,11 @@ document.onkeyup = function(event) {
     }
 }
 
-exitBtn.onclick = function() {
+exitBtn.onclick = function () {
     window.close();
 }
 
-revealBtn.onclick = function() {
+revealBtn.onclick = function () {
     identity.innerHTML = superheroes[index].alias.toLowerCase();
     $("#stage").modal("show");
 };
@@ -198,16 +199,24 @@ revealBtn.onclick = function() {
 
 // Start of Game
 function startGame(wins) {
-    var show = "hello";
+    // Modal shows the instruction on page load
     $('#myModal').modal('show');
-    index = Math.floor(Math.random() * superheroes.length); // Random number used to select random alias
-    hideName(superheroes[index].alias.toLowerCase()); // Will display dashes for each character in alias selected
-    showWins.innerText = numOfWins; // Will display number of wins
-    showLives.innerText = lives; // Will display number of lives left
+
+    // Random number used to select random alias
+    index = Math.floor(Math.random() * superheroes.length);
+
+    // Will display dashes for each character in alias selected
+    hideName(superheroes[index].alias.toLowerCase());
+
+    // Will display number of wins
+    showWins.innerText = numOfWins;
+
+    // Will display number of lives left
+    showLives.innerText = lives;
     wins = numOfWins;
 }
 
-restartBtn.onclick = function() {
+restartBtn.onclick = function () {
     location.reload()
 };
 
@@ -221,7 +230,7 @@ function hideName(realName) {
     }
     identity.innerText = nameArray.join("");
     tagline.innerText = '\"' + superheroes[index].tagline + '\"';
-    return nameArray;
+    // return nameArray;
 }
 
 // Check the letter guessed to see if it was previously used
@@ -232,7 +241,8 @@ function guessedLetter(newLetter) {
         guessed.innerText = guesses;
         showName(newLetter);
     }
-    return newLetter;
+    else alert("You have used that letter; make another selection.");
+    // return newLetter;
 }
 
 // Look for the current letter in the alias
@@ -256,9 +266,14 @@ function showName(letter) {
     if (!nameArray.includes(letter)) {
         lives--;
         if (lives === 0) {
+            for (var i = 0; i < nameArray.length; i++) {
+                nameArray.pop();
+            }
             alert("Game over...you lose.");
             identity.innerText = name;
+            startGame(numOfWins);
         }
+
     }
     // if the nameArray does not contain dashes, increment games win by 1
     else if (!nameArray.includes("-") && lives > 0) {
@@ -266,6 +281,9 @@ function showName(letter) {
         superhero_img.appendChild(img);
         superhero.innerText = superheroName;
         $("#stage").modal("show");
+        nameArray = [];
+        guesses = [];
+
     }
 
     // Update display with letters that were guessed correctly
@@ -273,12 +291,21 @@ function showName(letter) {
     showWins.innerText = numOfWins;
     identity.innerText = nameArray.join("");
 
-    return letter;
+    // return letter;
 }
 
-revealBtn.onclick = function() {
+revealBtn.onclick = function () {
     identity.innerHTML = superheroes[index].alias.toLowerCase();
     superhero_img.appendChild(img);
     superhero.innerText = superheroName;
     $("#stage").modal("show");
-};
+    clearStats(numOfWins);
+}
+
+// function clearStat(pastWins) {
+//     for (var i = 0; nameArray.length; i++) {
+//         nameArray.pop();
+//     }
+//     nameArray = [];
+//     startGame(pastWins);
+// }

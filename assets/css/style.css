@@ -1,7 +1,3 @@
-/* div {
-    border: 1px dotted red;
-} */
-
 body {
     box-sizing: border-box;
     /* background-image: url("../../assets/images/bg_img1.jpg");
@@ -9,7 +5,8 @@ body {
     background-image: url("../../assets/images/backgroundImages/bg_img4.jpg");
     /* background: #000; */
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: 100%;
+    font-family: "Orbitron", sans-serif;
     font-size: 14px;
     color: #FFF;
 }
@@ -19,15 +16,17 @@ header.jumbotron p {
 }
 
 div.well {
-    height: 300px;
+    height: 500px;
     margin-bottom: 0;
 }
 
-img {
-    width: 500px;
+div.modal-body {
+    margin: 0;
+    padding: 0;
+}
+div.modal-body img {
+    width: 598px;
     height: auto;
-    padding-left: auto;
-    padding-right: auto;
 }
 
 #letterBoard,
@@ -46,11 +45,15 @@ img {
 
 #letterBoard {
     word-wrap: break-word;
-    height: %;
+}
+
+#tagline {
+    font-style: italic;
 }
 
 .modal {
-    background-image: url("../../assets/images/backgroundImages/bg_img4.jpg");
+    /* background-image: url("../../assets/images/backgroundImages/bg_img4.jpg"); */
+    background-color: #000;
     color: #000;
 }
 

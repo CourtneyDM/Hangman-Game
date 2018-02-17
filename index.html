@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Orbitron" rel="stylesheet">
 
     <title>Superhero Hangman</title>
 </head>
@@ -35,7 +36,8 @@
                 <p class="text-center">Letters Guessed:
                     <br>
                     <span id="guessed">N/A</span>
-                </p><br>
+                </p>
+                <br>
 
                 <!-- Instructions Modal -->
                 <div class="row">
@@ -50,10 +52,19 @@
                                         <h4 class="modal-title">Welcome to Hangman - Superhero Edition</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <p>How well do you know your superheros? Well, you're about to find out! In this game of hangman, you have to guess the alias of a given superhero. Easy enough, right?</p><br>
-                                        <h4><strong>Your Objective:</strong></h4>
-                                        <p>You will be given a hint in the form of a tagline or movie quote, along with 10 chances to guess the alias of the superhero. Each incorrect guess will cost you, so choose wisely. <strong>NOTE</strong> - you will
-                                            not be penalized for guessing the same letter twice.</p>
+                                        <p>How well do you know your superheros? Well, you're about to find out! In this game
+                                            of hangman, you have to guess the alias of a given superhero. Easy enough, right?</p>
+                                        <br>
+                                        <h4>
+                                            <strong>Your Objective:</strong>
+                                        </h4>
+                                        <p>You will be given a hint in the form of a tagline or movie quote, along with 10 chances
+                                            to guess the alias of the superhero. Each incorrect guess will cost you, so choose
+                                            wisely.
+                                        </p>
+                                        <p>
+                                            <strong>NOTE</strong> - you will
+                                            <strong>not</strong> be penalized for guessing the same letter twice.</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -80,7 +91,8 @@
                                 <h4 id="superhero"></h4>
                             </div>
                             <div class="modal-body">
-                                <p class="img-responsive img-rounded" id="superhero_img"></p>
+                                <p class="img-responsive" id="superhero_img"></p>
+                                <!-- <p id="tagline"></p> -->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal" Close>Close</button>
@@ -117,7 +129,9 @@
                     <div class="col-md-6">
                         <span class="text-left" id="showWins"></span>
                     </div>
-                </div><br><br>
+                </div>
+                <br>
+                <br>
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-3">
