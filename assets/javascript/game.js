@@ -6,6 +6,7 @@ var lives = 10; // Number of guesses allowed
 var nameArray = []; // Stores the names
 var numOfWins = 0; // Store number of wins
 
+
 // HTML Modifiers
 var button = document.getElementById("restart");
 var current = document.getElementById("current"); // Show current letter guessed
@@ -187,9 +188,6 @@ document.onkeyup = function (event) {
     }
 }
 
-exitBtn.onclick = function () {
-    window.close();
-}
 
 revealBtn.onclick = function () {
     identity.innerHTML = superheroes[index].alias.toLowerCase();
@@ -211,6 +209,8 @@ function startGame(wins) {
     // Will display number of wins
     showWins.innerText = numOfWins;
 
+
+
     // Will display number of lives left
     showLives.innerText = lives;
     wins = numOfWins;
@@ -230,7 +230,7 @@ function hideName(realName) {
     }
     identity.innerText = nameArray.join("");
     tagline.innerText = '\"' + superheroes[index].tagline + '\"';
-    // return nameArray;
+    return nameArray;
 }
 
 // Check the letter guessed to see if it was previously used
@@ -271,7 +271,7 @@ function showName(letter) {
             }
             alert("Game over...you lose.");
             identity.innerText = name;
-            startGame(numOfWins);
+            // startGame(numOfWins);
         }
 
     }
@@ -298,8 +298,8 @@ revealBtn.onclick = function () {
     identity.innerHTML = superheroes[index].alias.toLowerCase();
     superhero_img.appendChild(img);
     superhero.innerText = superheroName;
-    $("#stage").modal("show");
-    clearStats(numOfWins);
+    // $("#stage").modal("show");
+    // clearStats(numOfWins);
 }
 
 // function clearStat(pastWins) {
