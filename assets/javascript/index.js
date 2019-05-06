@@ -49,7 +49,7 @@ function checkLetter ( letter, alias, blanks ) {
     document.querySelector( "#identity" ).textContent = blanks.join( "" );
     document.querySelector( "#guesses" ).textContent = guesses;
 
-    // If all letters have been won, show the superhero modal
+    // If the game has been won, show the superhero modal
     if ( guesses > 0 && !blanks.includes( "_" ) ) {
         superheroModal();
     }
