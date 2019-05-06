@@ -1,151 +1,116 @@
-// Global Variable Declarations
-var index; // Used as index for superheroes Object
-var letter; // Stores value of key pressed
-var guesses = []; // Stores all keys pressed
-var lives = 10; // Number of guesses allowed
-var nameArray = []; // Stores the names
-var numOfWins = 0; // Store number of wins
+let alias, blanks, guesses, index, losses = 0, wins = 0;
+let button = document.querySelectorAll( "button" );
 
-// HTML Modifiers
-var button = document.getElementById("restart");
-var current = document.getElementById("current"); // Show current letter guessed
-var guessed = document.getElementById("guessed"); // Show letters guessed
-var identity = document.getElementById("identity"); // Hide/reveal alias
-var modal = document.getElementById("stage"); // Get the modal
-var showLives = document.getElementById("showLives"); // Show lives left
-var showWins = document.getElementById("showWins"); // Show total wins
-var superhero = document.getElementById("superhero"); // Show superhero name
-var superhero_img = document.getElementById("superhero_img"); // Insert image after win
-var tagline = document.getElementById("tagline"); // Show hint associated with superhero
-
-// HTML Buttons
-var exitBtn = document.getElementById("exitBtn");
-var restartBtn = document.getElementById("restartBtn");
-var revealBtn = document.getElementById("revealBtn");
-
-// Start game
-window.onload = startGame(numOfWins);
-
-// Capture letter on key up
-document.onkeyup = function(event) {
-	// console.log(event.keyCode);
-	if (
-		event.keyCode > 122 ||
-		(event.keyCode < 97 && event.keyCode > 90) ||
-		(event.keyCode < 65 && event.keyCode > 75) ||
-		event.keyCode < 48
-	) {
-		letter = "";
-	} else {
-		letter = event.key.toLowerCase();
-		current.innerText = letter;
-		guessedLetter(letter);
-	}
-};
-
-revealBtn.onclick = function() {
-	identity.innerHTML = superheroes[index].alias.toLowerCase();
-	$("#stage").modal("show");
-};
-
-// Start of Game
-function startGame(wins) {
-	// Modal shows the instruction on page load
-	$("#myModal").modal("show");
-
-	// Random number used to select random alias
-	index = Math.floor(Math.random() * superheroes.length);
-
-	// Will display dashes for each character in alias selected
-	hideName(superheroes[index].alias.toLowerCase());
-
-	// Will display number of wins
-	showWins.innerText = numOfWins;
-
-	// Will display number of lives left
-	showLives.innerText = lives;
-	wins = numOfWins;
+// Add superhero contents to modal to be displayed when game is won
+function superheroModal () {
+    document.querySelector( "#superhero" ).textContent = superheroes[ index ].superhero;
+    document.querySelector( "#hero_img" ).innerHTML = '<img src="./' + superheroes[ index ].image + '"/>';
+    $( "#stage" ).modal( "show" );
 }
 
-restartBtn.onclick = function() {
-	location.reload();
-};
+// Clear the gameboard for gameplay
+function clearGameboard () {
+    alias, blanks = [], guesses = 10;
+    document.querySelector( "#wins" ).textContent = wins;
+    document.querySelector( "#losses" ).textContent = losses;
+    document.querySelector( "#guesses" ).textContent = guesses;
+    document.querySelector( "#current" ).textContent = "N/A";
+    document.querySelector( "#lettersGuessed" ).textContent = "N/A";
 
-// Display dashes on the screen
-function hideName(realName) {
-	console.log(realName);
-	for (var i = 0; i < realName.length; i++) {
-		if (realName[i] === " ") {
-			nameArray.push(" ");
-		} else nameArray.push("-");
-	}
-	identity.innerText = nameArray.join("");
-	tagline.innerText = '"' + superheroes[index].tagline + '"';
-	return nameArray;
+    // Randomly select a superhero from the Superheroes object
+    index = Math.floor( Math.random() * ( superheroes.length - 1 ) );
+    alias = superheroes[ index ].alias;
+
+    // Sort through the alias array and add dashes to the screen
+    for ( let i = 0; i < alias.length; i++ ) {
+        alias[ i ] === " " ? blanks.push( " " ) : blanks.push( "_" );
+    }
+    document.querySelector( "#identity" ).textContent = blanks.join( "" );
+
+    // Show tagline on game board
+    document.querySelector( "#tagline" ).textContent = superheroes[ index ].tagline;
+
+    // Call the function to start the hangman game
+    startGame();
 }
 
-// Check the letter guessed to see if it was previously used
-function guessedLetter(newLetter) {
-	// console.log(newLetter);
-	if (!guesses.includes(newLetter)) {
-		guesses.push(newLetter);
-		guessed.innerText = guesses;
-		showName(newLetter);
-	} else alert("You have used that letter; make another selection.");
-	// return newLetter;
+// Check if current letter is in the alias
+function checkLetter ( letter, alias, blanks ) {
+    // Decrease guesses by 1 if the letter was not found
+    if ( !alias.toLowerCase().includes( letter ) ) {
+        guesses--;
+    }
+    // If the letter was found, show it on the gameboard
+    for ( let i = 0; i < alias.length; i++ ) {
+        if ( alias[ i ].toLowerCase() === letter ) {
+            blanks[ i ] = alias[ i ];
+        }
+    }
+    document.querySelector( "#identity" ).textContent = blanks.join( "" );
+    document.querySelector( "#guesses" ).textContent = guesses;
+
+    // If all letters have been won, show the superhero modal
+    if ( guesses > 0 && !blanks.includes( "_" ) ) {
+        superheroModal();
+    }
 }
 
-// Look for the current letter in the alias
-function showName(letter) {
-	var superheroName = superheroes[index].superhero; // Shorthand reference to superhero name
-	var img = document.createElement("img"); // Create HTML element to display image
-	var imgSrc = superheroes[index].image; // Use alias attribute to get superhero image
-	var name = superheroes[index].alias.toLowerCase(); // Shorthand reference to superhero's alias
+// Start Hangman game
+function startGame () {
+    let lettersGuessed = [], currentLetter = null;
 
-	// Shorthand for setting image source attribute
-	img.src = imgSrc;
+    // Check if the letter entered is in the array
+    document.onkeyup = event => {
+        // If the key pressed isn't a letter, then disregard it
+        if ( event.keyCode > 122 ||
+            ( event.keyCode < 97 && event.keyCode > 90 ) ||
+            ( event.keyCode < 65 && event.keyCode > 75 ) ||
+            event.keyCode < 48
+        ) {
+            currentLetter = null;
+            // Otherwise, convert to a lowercase letter for checking
+        } else currentLetter = event.key.toLowerCase();
 
-	// loop through array and compare with current letter
-	for (var i = 0; i < name.length; i++) {
-		// if letter is found, update nameArray to include letter and display
-		if (name[i] === letter) {
-			nameArray[i] = letter;
-		}
-	}
-	// if the nameArray does not contain current letter, decrement lives by 1
-	if (!nameArray.includes(letter)) {
-		lives--;
-		if (lives === 0) {
-			for (var i = 0; i < nameArray.length; i++) {
-				nameArray.pop();
-			}
-			alert("Game over...you lose.");
-			identity.innerText = name;
-			// startGame(numOfWins);
-		}
-	}
-	// if the nameArray does not contain dashes, increment games win by 1
-	else if (!nameArray.includes("-") && lives > 0) {
-		numOfWins++;
-		superhero_img.appendChild(img);
-		superhero.innerText = superheroName;
-		$("#stage").modal("show");
-		nameArray = [];
-		guesses = [];
-	}
+        document.querySelector( "#current" ).textContent = currentLetter;
 
-	// Update display with letters that were guessed correctly
-	showLives.innerText = lives;
-	showWins.innerText = numOfWins;
-	identity.innerText = nameArray.join("");
+        // Check if the user entered a letter that was previously used
+        if ( lettersGuessed.includes( currentLetter ) ) {
+            alert( "This letter has been guessed. Pleased try again." );
+        }
+        // Add the letter to the guessed array
+        else lettersGuessed.push( currentLetter );
+        document.querySelector( "#lettersGuessed" ).textContent = lettersGuessed;
 
-	// return letter;
+        // If there are no guesses left, end game. Otherwise, check current letter
+        if ( guesses === 0 && blanks.includes( "_" ) ) {
+            losses++;
+            alert( "Game over. You lose." );
+            clearGameboard();
+        }
+        else checkLetter( currentLetter, alias, blanks )
+    };
 }
 
-revealBtn.onclick = function() {
-	identity.innerHTML = superheroes[index].alias.toLowerCase();
-	superhero_img.appendChild(img);
-	superhero.innerText = superheroName;
-	// $("#stage").modal("show");
-	// clearStats(numOfWins);
-};
+// Event listener for buttons: Reveal, Restart, Exit and modal close after winning round
+for ( let i = 0; i < button.length; i++ ) {
+    button[ i ].addEventListener( "click", event => {
+        if ( event.target.value === "reveal" ) {
+            document.querySelector( "#identity" ).textContent =
+                superheroes[ index ].alias;
+        }
+        if ( event.target.value === "restart" ) {
+            losses++;
+            clearGameboard();
+        }
+        if ( event.target.value === "winner" ) {
+            wins++;
+            clearGameboard();
+        }
+        if ( event.target.value === "exit" ) {
+            window.close();
+        }
+    } );
+}
+
+// Start game on page load
+clearGameboard();

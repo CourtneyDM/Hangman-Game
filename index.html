@@ -27,7 +27,7 @@
 
             <!-- Section for Letter Board header, hangman puzzle and letters guessed  -->
             <div class="row">
-                <div class="col-md-3 text-center well" id="letterBoard">
+                <div class="col-md-3 text-center well" id="letterboard">
                     <h3 class="text-center">Game Board</h3>
                     <br>
                     <br>
@@ -35,7 +35,7 @@
                     <p id="identity"></p>
                     <p class="text-center">Letters Guessed:
                         <br>
-                        <span id="guessed">N/A</span>
+                        <span id="lettersGuessed">N/A</span>
                     </p>
                     <br>
 
@@ -81,7 +81,8 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-info btn-sm" id="revealBtn">Reveal</button>
+                            <button type="button" class="btn btn-info btn-sm" id="btn-reveal"
+                                value='reveal'>Reveal</button>
                         </div>
                     </div>
                 </div>
@@ -94,15 +95,15 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        value="winner">&times;</button>
                                     <h4 id="superhero"></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <p class="img-responsive" id="superhero_img"></p>
-                                    <!-- <p id="tagline"></p> -->
+                                    <p class="img-responsive" id="hero_img"></p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    <button type="button" value='winner' class="btn btn-info" data-dismiss="modal"
                                         Close>Close</button>
                                 </div>
                             </div>
@@ -116,10 +117,10 @@
                     <br>
                     <div class="row">
                         <div class="col-md-6">
-                            <span class="text-left">Current Letter:</span>
+                            <span class="text-left">Current:</span>
                         </div>
                         <div class="col-md-6">
-                            <span class="text-right" id="current">N/A</span>
+                            <span class="text-right" id="current"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -127,15 +128,23 @@
                             <span class="text-left">Guesses Left:</span>
                         </div>
                         <div class="col-md-6">
-                            <span class="text-right" id="showLives"></span>
+                            <span class="text-right" id="guesses"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <span class="text-left">Total Wins:</span>
+                            <span class="text-left">Wins:</span>
                         </div>
                         <div class="col-md-6">
-                            <span class="text-left" id="showWins"></span>
+                            <span class="text-left" id="wins"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text-left">Losses:</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text-left" id="losses"></span>
                         </div>
                     </div>
                     <br>
@@ -143,11 +152,11 @@
                     <div class="row">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-3">
-                            <button class="btn btn-sm" id="restartBtn">Restart</button>
+                            <button type="button" class="btn btn-sm" value='restart'>New Game</button>
                         </div>
                         <div class="col-sm-2"></div>
                         <div class="col-sm-3">
-                            <button class="btn btn-sm btn-danger" id="exitBtn">Exit</button>
+                            <button type="button" class="btn btn-sm btn-danger" value='exit'>Exit</button>
                         </div>
                         <div class="col-sm-2"></div>
                     </div>

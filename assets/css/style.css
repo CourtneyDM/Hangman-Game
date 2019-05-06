@@ -29,7 +29,7 @@ div.modal-body img {
     height: auto;
 }
 
-#letterBoard,
+#letterboard,
 #stage,
 #stats {
     color: #888;
@@ -43,7 +43,7 @@ div.modal-body img {
     margin-right: auto;
 }
 
-#letterBoard {
+#letterboard {
     word-wrap: break-word;
 }
 
